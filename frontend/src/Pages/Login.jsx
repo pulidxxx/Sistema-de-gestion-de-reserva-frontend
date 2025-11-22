@@ -1,11 +1,12 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import ThemeSwitcher from "../Components/ThemeSwitcher";
 import Image from "react-bootstrap/Image";
 import Alert from "react-bootstrap/Alert";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Header from "../Classes/Header/Header";
+//import Header from "../Classes/Header/Header";
 import "../Styles/Login.css";
 import { ConversionEmail } from "../Classes/Adapter/conversionEmail";
 import { FachadaDeEstados } from "../Classes/Estados/Fachada/FachadaDeEstados";
@@ -71,7 +72,7 @@ function Login() {
             setAlertState(fachada.cambioEstadoDeAlerta(0));
             setShowAlert(fachada.cambioMostrarAlerta());
 
-            login(email);
+            login(email); // ✅ usamos el contexto aquí
             localStorage.setItem("username", nombre);
             localStorage.setItem("tipoUsuario", tipo);
 
@@ -120,7 +121,9 @@ function Login() {
 
   return (
     <>
-      <Header />
+      {/*<Header />*/}
+      <header style={{ padding: "40px 0" }}>
+      </header>
       <Alert
         className="alert mt-5"
         variant={alertState}
@@ -131,12 +134,12 @@ function Login() {
         {alertText}
       </Alert>
       <div className="text-center content">
-        <h1 className="prueba">Reservas UD</h1>
+        <h1 className="prueba">Sistema de reserva de espacios y material UD</h1>
         <Form.Group className="mb-4 mt-4" controlId="formBasicTipo">
           <Image className="logoCentral" src="/logo.png" fluid width="22%" />
         </Form.Group>
         <Form onSubmit={handleFormSubmit} data-testid="Form">
-          <Form.Group className="mb-3" controlId="formTipoRegistro">
+          {/*<Form.Group className="mb-3" controlId="formTipoRegistro">
             <Form.Select 
               style={{ width: "325px" }}
               name="tipo"
@@ -150,7 +153,7 @@ function Login() {
               <option value="Externo">Externo</option>
               <option value="Laborista">Laborista</option>
             </Form.Select>
-          </Form.Group>
+          </Form.Group>}*/}
 
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Control
@@ -188,26 +191,20 @@ function Login() {
           </Button>
         </Form>
         <Form.Group>
-          <hr />
+          {/*<hr />*/}
           <Link to={"/registro"}>
             <Button
-              variant="outline-primary"
+              variant="link"
               type="submit"
               data-testid="Crear cuenta"
             >
               Crear cuenta
             </Button>
           </Link>
-          <Link to={"/"} className="d-block mt-3">
-            <Button
-              variant="outline-secondary"
-              className="btn-back-home"
-            >
-              ← Volver al inicio
-            </Button>
-          </Link>
         </Form.Group>
       </div>
+      <ThemeSwitcher/>
+      <br/>
     </>
   );
 }
