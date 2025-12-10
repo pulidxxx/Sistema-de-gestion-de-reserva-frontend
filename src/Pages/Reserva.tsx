@@ -41,10 +41,6 @@ const ReservaPage: React.FC = () => {
 
         <Row className="px-5 ">
           <Col md={{ span: 10, offset: 1 }}>
-            <h4 className="">
-              <strong>Instrucciones:</strong> Utiliza los filtros para encontrar el espacio ideal,
-              selecciona una fecha y reserva el horario que necesites.
-            </h4>
             <FiltroReservas
               onSelectEspacio={handleSelectEspacio}
               onFiltrosChange={handleFiltrosChange}

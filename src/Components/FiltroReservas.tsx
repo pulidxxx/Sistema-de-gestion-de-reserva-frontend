@@ -62,17 +62,19 @@ const FiltroReservas: React.FC<Props> = ({ onSelectEspacio, onFiltrosChange }) =
   }, [email]);
 
   const tiposEspacio = [
-    { value: 'Aula', label: 'Aula', icon: '🏫' },
-    { value: 'Laboratorio de Computación', label: 'Lab. Computación', icon: '💻' },
-    { value: 'Laboratorio de Física', label: 'Lab. Física', icon: '⚗️' },
-    ...(tipoUsuario === 'Profesor' ? [{ value: 'Auditorio', label: 'Auditorio', icon: '🎭' }] : []),
+    { value: 'Aula', label: 'Aula', icon: 'fa-chalkboard' },
+    { value: 'Laboratorio de Computación', label: 'Lab. Computación', icon: 'fa-laptop-code' },
+    { value: 'Laboratorio de Física', label: 'Lab. Física', icon: 'fa-flask' },
+    ...(tipoUsuario === 'Profesor'
+      ? [{ value: 'Auditorio', label: 'Auditorio', icon: 'fa-users' }]
+      : []),
   ];
 
   return (
     <div className="filtro-reservas">
       <div className="filtro-header">
         <div className="filtro-title">
-          <span className="filtro-icon">🔍</span>
+          <i className="fas fa-search filtro-icon"></i>
           <h3>Buscar Espacios</h3>
         </div>
         <div className="filtro-subtitle">Encuentra el espacio perfecto para tu reserva</div>
@@ -82,7 +84,7 @@ const FiltroReservas: React.FC<Props> = ({ onSelectEspacio, onFiltrosChange }) =
         {/* Filtro por tipo de espacio */}
         <div className="filter-group">
           <label className="filter-label">
-            <span className="filter-label-icon">🏛️</span>
+            <i className="fas fa-building filter-label-icon"></i>
             Tipo de Espacio
           </label>
           <div className="filter-options">
@@ -91,7 +93,7 @@ const FiltroReservas: React.FC<Props> = ({ onSelectEspacio, onFiltrosChange }) =
               className={`filter-option ${!filtros.tipoEspacio ? 'active' : ''}`}
               onClick={() => handleFiltroChange('tipoEspacio', undefined)}
             >
-              <span className="filter-option-icon">🌟</span>
+              <i className="fas fa-star filter-option-icon"></i>
               <span>Todos</span>
             </button>
             {tiposEspacio.map((tipo) => (
@@ -101,7 +103,7 @@ const FiltroReservas: React.FC<Props> = ({ onSelectEspacio, onFiltrosChange }) =
                 className={`filter-option ${filtros.tipoEspacio === tipo.value ? 'active' : ''}`}
                 onClick={() => handleFiltroChange('tipoEspacio', tipo.value)}
               >
-                <span className="filter-option-icon">{tipo.icon}</span>
+                <i className={`fas ${tipo.icon} filter-option-icon`}></i>
                 <span>{tipo.label}</span>
               </button>
             ))}
@@ -111,7 +113,7 @@ const FiltroReservas: React.FC<Props> = ({ onSelectEspacio, onFiltrosChange }) =
         {/* Selección de espacio */}
         <div className="filter-group">
           <label className="filter-label">
-            <span className="filter-label-icon">📍</span>
+            <i className="fas fa-map-marker-alt filter-label-icon"></i>
             Seleccionar Espacio
           </label>
 
@@ -124,7 +126,7 @@ const FiltroReservas: React.FC<Props> = ({ onSelectEspacio, onFiltrosChange }) =
 
           {error && (
             <div className="error-state">
-              <span className="error-icon">⚠️</span>
+              <i className="fas fa-exclamation-triangle error-icon"></i>
               <span>Error cargando espacios</span>
             </div>
           )}
@@ -144,15 +146,7 @@ const FiltroReservas: React.FC<Props> = ({ onSelectEspacio, onFiltrosChange }) =
                 ))}
               </select>
               <div className="select-arrow">
-                <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-                  <path
-                    d="M1 1l5 5 5-5"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <i className="fas fa-chevron-down"></i>
               </div>
             </div>
           )}
@@ -166,14 +160,14 @@ const FiltroReservas: React.FC<Props> = ({ onSelectEspacio, onFiltrosChange }) =
               return espacio ? (
                 <div className="space-card">
                   <div className="space-header">
-                    <span className="space-icon">🏢</span>
+                    <i className="fas fa-door-open space-icon"></i>
                     <div className="space-details">
                       <h4>{espacio.nombre}</h4>
                       <p>{espacio.tipo}</p>
                     </div>
                   </div>
                   <div className="space-capacity">
-                    <span className="capacity-icon">👥</span>
+                    <i className="fas fa-users capacity-icon"></i>
                     <span>Capacidad: {espacio.capacidad} personas</span>
                   </div>
                 </div>
@@ -190,7 +184,7 @@ const FiltroReservas: React.FC<Props> = ({ onSelectEspacio, onFiltrosChange }) =
             onClick={limpiarFiltros}
             disabled={loading}
           >
-            <span className="btn-icon">🔄</span>
+            <i className="fas fa-redo-alt btn-icon"></i>
             <span>Limpiar Filtros</span>
           </button>
         </div>
